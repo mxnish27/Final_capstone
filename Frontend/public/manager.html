@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manager Dashboard</title>
+  <style>
+    body { margin:0; font-family: Arial, sans-serif; }
+    .header { background-color:#2a4d8f; color:white; padding:10px; display:flex; justify-content:space-between; align-items:center; }
+    .layout { display:flex; height:90vh; }
+    .sidebar { width:220px; background-color:#ddd; padding:10px; }
+    .sidebar button { display:block; margin-bottom:10px; width:100%; }
+    .content { flex:1; padding:20px; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <div class="header">
+    <h2>Leave Management System</h2>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Layout -->
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h3>Manager Menu</h3>
+      <button onclick="loadPage('notifications')">Notifications</button>
+      <button onclick="loadPage('employees')">View Employees</button>
+      <button onclick="loadPage('holidays')">Holiday List</button>
+      <button onclick="loadPage('addEmployee')">Add Employee</button>
+    </div>
+
+    <!-- Content Area -->
+    <div class="content" id="content">
+      <h2>Welcome Manager!</h2>
+      <p>Select an option from the menu.</p>
+    </div>
+
+  </div>
+
+  <script>
+    function logout() {
+      alert("Logging out...");
+      window.location.href = "index.html";
+    }
+
+    function loadPage(page) {
+      let content = document.getElementById("content");
+
+      if (page === 'notifications') {
+        content.innerHTML = "<h2>Notifications</h2><p>No new notifications.</p>";
+      } else if (page === 'employees') {
+        content.innerHTML = "<h2>Employee List</h2><p>List of employees will show here.</p>";
+      } else if (page === 'holidays') {
+        content.innerHTML = "<h2>Holiday List</h2><p>All holidays will show here.</p>";
+      } else if (page === 'addEmployee') {
+        content.innerHTML = `
+          <h2>Add Employee</h2>
+          <form>
+            <label>Employee ID:</label><br><input type="text"><br><br>
+            <label>First Name:</label><br><input type="text"><br><br>
+            <label>Last Name:</label><br><input type="text"><br><br>
+            <label>Job:</label><br><input type="text"><br><br>
+            <label>Manager ID:</label><br><input type="text"><br><br>
+            <label>Email:</label><br><input type="email"><br><br>
+            <button type="submit">Add Employee</button>
+          </form>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>
